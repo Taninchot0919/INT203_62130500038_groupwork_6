@@ -9,43 +9,48 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <!-- Vue CDN -->
     <script src="https://unpkg.com/vue@next"></script>
+    <!-- Validate JS through CDN -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
+    <!-- Tailwind CDN -->
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body style="background-image: linear-gradient(to bottom right,#36d1dc ,#5b86e5);">
     <div id="app" class="ml-10 mt-8">
         <div id="old-profile">
-            <img :src="pictureUrl" class="rounded-full w-2/5 float-left mr-40">
-            <div id="profile-name" class="text-xl pt-60 pl-32 space-y-6">
-                <p class="text-4xl font-bold">My Profile</p>
-                <p>Full Name : {{firstname}} {{lastname}}</p>
-                <p>Email : {{email}}</p>
-                <p>Carreer : {{career}}</p>
-                <p>Telno : {{telno}}</p>
+            <img :src="pictureUrl" class="rounded-full w-2/5 float-left mr-40 mb-10 shadow-2xl">
+            <div id="profile-name" class="text-xl pt-40 pl-32 space-y-6">
+                <h2 class="text-white text-8xl font-bold">My Profile</h2>
+                <p class="text-white text-3xl">Full Name : {{firstname}} {{lastname}}</p>
+                <p class="text-white text-3xl">Email : {{email}}</p>
+                <p class="text-white text-3xl">Carreer : {{career}}</p>
+                <p class="text-white text-3xl">Telno : {{telno}}</p>
             </div>
+            <button @click="editProfile=!editProfile" class="mt-6 border border-white p-2 text-white">Edit Your Profile</button>
         </div>
 
-        <div id="form">
-            <h2 class="font-bold text-3xl mt-10">Edit Your Profile</h2>
+        <div id="form" v-show="editProfile">
+            <h2 class="font-bold text-3xl mt-8 text-white ">Edit Your Profile</h2>
             <form @submit="checkForm" action="" class="space-y-3.5">
-                <p v-if="errors" class="text-red-500">
+                <p v-if="errors" class="text-red-500 mt-3">
                     <b>Please correct the following error(s):</b>
                 <ul>
                     <li v-for="error in errors" class="text-red-500">{{ error }}</li>
                 </ul>
                 </p>
-                <p>Firstname <input type="text" id="firstname" name="firstname" v-model="form.firstname"
-                        class="border border-black h-8 rounded-md pl-2">
-                <p>Lastname <input type="text" id="lastname" name="lastname" v-model="form.lastname"
-                        class="border border-black h-8 rounded-md pl-2">
-                <p>Email <input type="text" id="email" name="email" v-model="form.email"
-                        class="border border-black h-8 rounded-md pl-2">
-                <p>Career <input type="text" id="career" name="career" v-model="form.career"
-                        class="border border-black h-8 rounded-md pl-2">
-                <p>Telno <input type="text" id="telno" name="telno" v-model="form.telno"
-                        class="border border-black h-8 rounded-md pl-2"> </p>
-                    <button type="submit" class="border h-15 text-3xl">Change</button>
+                <p class="text-white text-xl">Firstname <input type="text" id="firstname" name="firstname" v-model="form.firstname"
+                        class="border border-black h-8 rounded-md pl-2 text-black p-5">
+                <p class="text-white text-xl">Lastname <input type="text" id="lastname" name="lastname" v-model="form.lastname"
+                        class="border border-black h-8 rounded-md pl-2 text-black p-5">
+                <p class="text-white text-xl">Email <input type="text" id="email" name="email" v-model="form.email"
+                        class="border border-black h-8 rounded-md pl-2 text-black p-5">
+                <p class="text-white text-xl">Career <input type="text" id="career" name="career" v-model="form.career"
+                        class="border border-black h-8 rounded-md pl-2 text-black p-5">
+                <p class="text-white text-xl">Telno <input type="text" id="telno" name="telno" v-model="form.telno"
+                        class="border border-black h-8 rounded-md pl-2 text-black p-5"> </p>
+                <button type="submit" class="border h-15 border-white p-2 text-white">Change</button>
             </form>
         </div>
     </div>

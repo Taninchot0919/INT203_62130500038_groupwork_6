@@ -31,35 +31,47 @@ const app = Vue.createApp({
             telno: '1234567890',
             form: {
                 firstname: null,
-                lastname:null,
+                lastname: null,
                 email: null,
                 career: null,
                 telno: null,
             },
             errors: null,
+            editProfile: false
         }
     },
     methods: {
+        setData() {
+            this.firstname = this.form.firstname;
+            this.lastname = this.form.lastname;
+            this.career = this.form.career;
+            this.email = this.form.email;
+            this.telno = this.form.telno;
+        },
+        clearFormData() {
+            this.form.firstname = null;
+            this.form.lastname = null;
+            this.form.career = null;
+            this.form.email = null;
+            this.form.telno = null;
+        },
         checkForm(e) {
-            console.log('Checkform Method run')
             this.errors = validate({
                 firstname: this.form.firstname,
-                lastname : this.form.lastname,
+                lastname: this.form.lastname,
                 career: this.form.career,
                 email: this.form.email,
                 telno: this.form.telno,
             }, constraints)
+
             if (this.errors) {
-                console.log(this.errors)
                 e.preventDefault();
+
             } if (this.errors == null) {
-                this.firstname = this.form.firstname;
-                this.lastname = this.form.lastname;
-                this.career = this.form.career;
-                this.email = this.form.email;
-                this.telno = this.form.telno;
-                console.log(this.errors)
-                alert('Pass')
+                alert('Your profile is updated successfully')
+                this.setData();
+                this.editProfile = false
+                this.clearFormData();
                 e.preventDefault();
             }
         }
